@@ -17,7 +17,7 @@ def rbf(x_1, x_2, sigma=1.):
         kernel function values for all pairs of samples from x_1 and x_2
         torch.tensor of type torch.float32 shaped `(#samples_1, #samples_2)`
     '''
-    distances = ### YOUR CODE HERE
+    distances = torch.exp(-sigma*(x1-x2)).norm()### YOUR CODE HERE
     return torch.Tensor(distances).type(torch.float32)
 
 def hinge_loss(scores, labels):
@@ -25,7 +25,7 @@ def hinge_loss(scores, labels):
     '''
     assert len(scores.shape) == 1
     assert len(labels.shape) == 1
-    return ### YOUR CODE HERE
+    return 1-scores*labels### YOUR CODE HERE
 
 
 class SVM(BaseEstimator, ClassifierMixin):
@@ -40,7 +40,7 @@ class SVM(BaseEstimator, ClassifierMixin):
             kernel function values for all pairs of samples from x_1 and x_2
             torch.tensor shaped `(#samples_1, #samples_2)` of type torch.float32
         '''
-        return ### YOUR CODE HERE
+        return x_1*x_2### YOUR CODE HERE
     
     def __init__(
         self,
